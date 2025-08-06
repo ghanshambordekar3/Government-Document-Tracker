@@ -102,5 +102,9 @@ public class MDIForm extends JFrame implements ActionListener
         {
             
         }
+        if(e.getSource() == mnuOutWord)
+        {
+            
+        }
     }
 }
