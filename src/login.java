@@ -104,7 +104,8 @@ public class login extends JFrame implements ActionListener
 		btnrestore.addActionListener(this);
 	}
 	
-	 private void animateRestorePanelWipeIn() {
+	 private void animateRestorePanelWipeIn() 
+	 {
 	        RestorePanel.setVisible(true);
 	        final int startX = 20;
 	        final int y = 420;
@@ -191,9 +192,9 @@ public class login extends JFrame implements ActionListener
 	{	
 		if (selectedFilePath == null || selectedFilePath.isEmpty()) 
 		{
-            JOptionPane.showMessageDialog(this, "Please select a backup file first.");
-            return;
-        }
+           		 JOptionPane.showMessageDialog(this, "Please select a backup file first.");
+           		 return;
+       		 }
 		
 		String url = "InWordOutWord";
 		String user = "root";
