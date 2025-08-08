@@ -98,10 +98,12 @@ public class MDIForm extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource() == mnuInWord)
-        {
-            
-        }
+       if(e.getSource() == mnuInWord)
+		{
+			frmInWord obj = new frmInWord();
+			Desktop.add(obj);
+			obj.show();
+		}
         if(e.getSource() == mnuOutWord)
         {
             
