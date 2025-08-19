@@ -3,8 +3,7 @@ import java.awt.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
-public class MDIForm extends JFrame implements ActionListener 
-{
+public class MDIForm extends JFrame implements ActionListener {
     JMenuBar mBar;
 
     JMenu mnuMaster, mnuView, mnuTools;
@@ -15,8 +14,7 @@ public class MDIForm extends JFrame implements ActionListener
 
     JLabel lbName, lbText;
 
-    MDIForm() 
-    {
+    MDIForm() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -96,17 +94,26 @@ public class MDIForm extends JFrame implements ActionListener
         getContentPane().add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-       if(e.getSource() == mnuInWord)
-		{
-			frmInWord obj = new frmInWord();
-			Desktop.add(obj);
-			obj.show();
-		}
-        if(e.getSource() == mnuOutWord)
-        {
-            
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == mnuInWord) {
+            frmInWord obj = new frmInWord();
+            Desktop.add(obj);
+            obj.show();
+        }
+        if (e.getSource() == mnuOutWord) {
+            frmOutWord obj = new frmOutWord();
+            Desktop.add(obj);
+            obj.show();
+        }
+        if(e.getSource() == mnuApplicationStatus){
+            frmApplicationStatus obj = new frmApplicationStatus();
+            Desktop.add(obj);
+            obj.show();
+        }
+        if(e.getSource() == mnuBackup){
+            frmBackup obj = new frmBackup();
+            Desktop.add(obj);
+            obj.show();
         }
     }
 }

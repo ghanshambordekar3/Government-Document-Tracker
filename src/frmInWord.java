@@ -9,8 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class frmInWord extends JInternalFrame implements ActionListener
- {
+public class frmInWord extends JInternalFrame implements ActionListener {
     JPanel InWordPanel, tablePanel, containerPanel;
 
     JLabel lbSrNo, lbApplicationDate, lbApplicantName, lbCertificateType, lbApplicationID, lbContactNo, lbBirthDate,
@@ -30,8 +29,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
     int panelFullWidth = 540;
     int panelHeight = 550;
 
-    frmInWord()
-     {
+    frmInWord() {
         super("In-Word", true, true, true, true);
         // setSize(600,650);
         // setLocation(0,0);
@@ -69,19 +67,14 @@ public class frmInWord extends JInternalFrame implements ActionListener
         txApplicationDate.setBounds(170, 100, 200, 20);
         InWordPanel.add(txApplicationDate);
 
-        txApplicationDate.addFocusListener(new FocusAdapter() 
-        {
-            public void focusLost(FocusEvent e) 
-            {
+        txApplicationDate.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent e) {
                 String input = txApplicationDate.getText().trim();
 
-                try 
-                {
+                try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     LocalDate date = LocalDate.parse(input, formatter);
-                }
-                catch (Exception ex) 
-                {
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Invalid date, Please Enter Valid Date Format (dd-MM-yyyy)");
                     txApplicationDate.setText("");
                     txApplicationDate.requestFocus();
@@ -97,14 +90,11 @@ public class frmInWord extends JInternalFrame implements ActionListener
         txApplicantName.setBounds(170, 150, 200, 20);
         InWordPanel.add(txApplicantName);
 
-        txApplicantName.addKeyListener(new KeyAdapter() 
-        {
-            public void keyTyped(KeyEvent e) 
-            {
+        txApplicantName.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 char ch = e.getKeyChar();
 
-                if (!Character.isLetter(ch) && ch != ' ') 
-                {
+                if (!Character.isLetter(ch) && ch != ' ') {
                     e.consume();
                 }
             }
@@ -139,10 +129,8 @@ public class frmInWord extends JInternalFrame implements ActionListener
         cmbCertificateType.addItem("Pancard");
         cmbCertificateType.addItem("Gazette");
 
-        cmbCertificateType.addFocusListener(new FocusAdapter() 
-        {
-            public void focusLost(FocusEvent e) 
-            {
+        cmbCertificateType.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent e) {
                 txContactNo.requestFocus();
             }
         });
@@ -156,14 +144,11 @@ public class frmInWord extends JInternalFrame implements ActionListener
         InWordPanel.add(txApplicationID);
         txApplicationID.setEditable(false);
 
-        txApplicationID.addKeyListener(new KeyAdapter() 
-        {
-            public void keyTyped(KeyEvent e) 
-            {
+        txApplicationID.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 char ch = e.getKeyChar();
 
-                if (ch < '1' || ch > '9') 
-                {
+                if (ch < '1' || ch > '9') {
                     e.consume();
                     txStatus.setText("Process");
                 }
@@ -178,15 +163,12 @@ public class frmInWord extends JInternalFrame implements ActionListener
         txContactNo.setBounds(170, 300, 200, 20);
         InWordPanel.add(txContactNo);
 
-        txContactNo.addKeyListener(new KeyAdapter() 
-        {
-            public void keyTyped(KeyEvent e) 
-            {
+        txContactNo.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 String text = txContactNo.getText();
                 char ch = e.getKeyChar();
 
-                if (ch < 0 || text.length() >= 10) 
-                {
+                if (ch < 0 || text.length() >= 10) {
                     e.consume();
                 }
             }
@@ -200,19 +182,14 @@ public class frmInWord extends JInternalFrame implements ActionListener
         txBirthDate.setBounds(170, 350, 200, 20);
         InWordPanel.add(txBirthDate);
 
-        txBirthDate.addFocusListener(new FocusAdapter() 
-        {
-            public void focusLost(FocusEvent e) 
-            {
+        txBirthDate.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent e) {
                 String input = txBirthDate.getText().trim();
 
-                try 
-                {
+                try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     LocalDate date = LocalDate.parse(input, formatter);
-                }
-                catch (Exception ex) 
-                {
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Invalid date, Please Enter Valid Date Format (dd-MM-yyyy)");
                     txBirthDate.setText("");
                     txBirthDate.requestFocus();
@@ -228,14 +205,11 @@ public class frmInWord extends JInternalFrame implements ActionListener
         txReceivedBy.setBounds(170, 400, 200, 20);
         InWordPanel.add(txReceivedBy);
 
-        txReceivedBy.addKeyListener(new KeyAdapter() 
-        {
-            public void keyTyped(KeyEvent e) 
-            {
+        txReceivedBy.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 char ch = e.getKeyChar();
 
-                if (!Character.isLetter(ch) && ch != ' ') 
-                {
+                if (!Character.isLetter(ch) && ch != ' ') {
                     e.consume();
                 }
             }
@@ -308,12 +282,9 @@ public class frmInWord extends JInternalFrame implements ActionListener
 
         // Maximize on launch
         SwingUtilities.invokeLater(() -> {
-            try 
-            {
+            try {
                 setMaximum(true);
-            }
-            catch (Exception e) 
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             animateWipeIn();
@@ -321,25 +292,20 @@ public class frmInWord extends JInternalFrame implements ActionListener
 
         setVisible(true);
 
-        try 
-        {
+        try {
             int i = GlobalClass.id_Reader("Select Max(srno) from inword");
             cmbSrNo.addItem(Integer.toString(i));
             cmbSrNo.setSelectedIndex(cmbSrNo.getItemCount() - 1);
-        }
-        catch (Exception ex) 
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
     // Dynamically resize container to fit all children
-    private void adjustScrollSize() 
-    {
+    private void adjustScrollSize() {
         SwingUtilities.invokeLater(() -> {
             Dimension maxBounds = new Dimension(0, 0);
-            for (Component c : containerPanel.getComponents()) 
-            {
+            for (Component c : containerPanel.getComponents()) {
                 Rectangle bounds = c.getBounds();
                 maxBounds.width = Math.max(maxBounds.width, bounds.x + bounds.width);
                 maxBounds.height = Math.max(maxBounds.height, bounds.y + bounds.height);
@@ -355,18 +321,14 @@ public class frmInWord extends JInternalFrame implements ActionListener
         });
     }
 
-    private void animateWipeIn() 
-    {
+    private void animateWipeIn() {
         int centerX = (scrollContainer.getViewport().getWidth() - panelFullWidth) / 2;
         Timer timer = new Timer(5, null);
-        timer.addActionListener(new ActionListener() 
-        {
+        timer.addActionListener(new ActionListener() {
             int width = 0;
 
-            public void actionPerformed(ActionEvent e) 
-            {
-                if (width < panelFullWidth) 
-                {
+            public void actionPerformed(ActionEvent e) {
+                if (width < panelFullWidth) {
                     width += 10;
                     InWordPanel.setBounds(centerX, 20, width, panelHeight);
                     btnSave.setLocation(centerX + 90, 580);
@@ -375,9 +337,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
                     // btnListSelected.setLocation(centerX + 600, 350);
                     // btnHideList.setLocation(centerX + 740, 350);
                     containerPanel.repaint();
-                }
-                else 
-                {
+                } else {
                     InWordPanel.setBounds(centerX, 20, panelFullWidth, panelHeight);
                     timer.stop();
                 }
@@ -412,27 +372,21 @@ public class frmInWord extends JInternalFrame implements ActionListener
      * }
      */
 
-    private void animateWipeInLeftAligned() 
-    {
+    private void animateWipeInLeftAligned() {
         int startX = 20; // Padding from the left edge
         Timer timer = new Timer(5, null);
-        timer.addActionListener(new ActionListener() 
-        {
+        timer.addActionListener(new ActionListener() {
             int width = 0;
 
-            public void actionPerformed(ActionEvent e) 
-            {
-                if (width < panelFullWidth) 
-                {
+            public void actionPerformed(ActionEvent e) {
+                if (width < panelFullWidth) {
                     width += 10;
                     InWordPanel.setBounds(startX, 20, width, panelHeight);
                     btnSave.setLocation(startX + 90, 580);
                     btnUpdate.setLocation(startX + 210, 580);
                     btnViewList.setLocation(startX + 330, 580);
                     containerPanel.repaint();
-                }
-                else 
-                {
+                } else {
                     InWordPanel.setBounds(startX, 20, panelFullWidth, panelHeight);
                     timer.stop();
                 }
@@ -441,56 +395,46 @@ public class frmInWord extends JInternalFrame implements ActionListener
         timer.start();
     }
 
-    class AbstractTable extends AbstractTableModel 
-    {
+    class AbstractTable extends AbstractTableModel {
         private String[] ColumnName = { "SrNo", "ApplicationDate", "ApplicantName", "CertificateType", "ApplicationID",
                 "ContactNo", "BirthDate", "ReceivedBy", "Remarks", "Status" };
 
         private Object[][] data = new Object[50][50];
 
-        public int getColumnCount() 
-        {
+        public int getColumnCount() {
             return ColumnName.length;
         }
 
-        public int getRowCount() 
-        {
+        public int getRowCount() {
             return data.length;
         }
 
-        public String getColumnName(int col) 
-        {
+        public String getColumnName(int col) {
             return ColumnName[col];
         }
 
-        public Object getValueAt(int row, int col) 
-        {
+        public Object getValueAt(int row, int col) {
             return data[row][col];
         }
 
-        public void setValueAt(Object value, int row, int col) 
-        {
+        public void setValueAt(Object value, int row, int col) {
             data[row][col] = value;
         }
     }
 
-    public static int getSelectedRow() 
-    {
+    public static int getSelectedRow() {
         tblList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.ListSelectionModel rowSel = tblList.getSelectionModel();
         rowSel.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent e) 
-            {
-                if (e.getValueIsAdjusting()) 
-                {
+            public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
                     return;
                 }
 
                 javax.swing.ListSelectionModel sel = (ListSelectionModel) e.getSource();
 
-                if (!sel.isSelectionEmpty()) 
-                {
+                if (!sel.isSelectionEmpty()) {
                     selectedRow = sel.getMinSelectionIndex();
                 }
             }
@@ -498,24 +442,17 @@ public class frmInWord extends JInternalFrame implements ActionListener
         return selectedRow;
     }
 
-    void display() 
-    {
-        try 
-        {
+    void display() {
+        try {
             cmbSrNo.setSelectedItem(GlobalClass.rsNavi.getString(1));
-        }
-        catch (Exception ex) 
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
-    public void actionPerformed(ActionEvent e) 
-    {
-        try 
-        {
-            if (e.getSource() == btnSave) 
-            {
+    public void actionPerformed(ActionEvent e) {
+        try {
+            if (e.getSource() == btnSave) {
                 GlobalClass.Record_Manip("Insert into inword values(" + cmbSrNo.getSelectedItem().toString() + ",'"
                         + txApplicationDate.getText() + "','" + txApplicantName.getText() + "','"
                         + cmbCertificateType.getSelectedItem().toString() + "'," + txApplicationID.getText() + ","
@@ -544,8 +481,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
 
             }
 
-            if (e.getSource() == btnUpdate) 
-            {
+            if (e.getSource() == btnUpdate) {
                 GlobalClass.Record_Manip("Update inword set ApplicationDate='" + txApplicationDate.getText()
                         + "', ApplicantName='" + txApplicantName.getText() + "', CertificateType='"
                         + cmbCertificateType.getSelectedItem().toString() + "', ApplicationID="
@@ -583,8 +519,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
 
             }
 
-            if (e.getSource() == btnViewList) 
-            {
+            if (e.getSource() == btnViewList) {
                 // setSize(1500,650);
                 // setLocation(0,0);
 
@@ -618,8 +553,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
                 // screenSize.height));
             }
 
-            if (e.getSource() == btnListSelected) 
-            {
+            if (e.getSource() == btnListSelected) {
                 int c = Integer.parseInt(tblList.getValueAt(getSelectedRow(), 0).toString());
 
                 cmbSrNo.addItem(Integer.toString(c));
@@ -630,10 +564,8 @@ public class frmInWord extends JInternalFrame implements ActionListener
 
                 btnSave.setEnabled(false);
 
-                txStatus.addFocusListener(new FocusAdapter() 
-                {
-                    public void focusLost(FocusEvent e) 
-                    {
+                txStatus.addFocusListener(new FocusAdapter() {
+                    public void focusLost(FocusEvent e) {
                         btnUpdate.requestFocus();
                     }
                 });
@@ -643,10 +575,8 @@ public class frmInWord extends JInternalFrame implements ActionListener
                 txApplicationID.setEditable(true);
                 txApplicationID.requestFocus();
             }
-            if (e.getSource() == cmbSrNo) 
-            {
-                if (cmbSrNo.getSelectedItem().toString().equals("*")) 
-                {
+            if (e.getSource() == cmbSrNo) {
+                if (cmbSrNo.getSelectedItem().toString().equals("*")) {
                     txApplicationDate.setText("");
                     txApplicantName.setText("");
                     cmbCertificateType.setSelectedIndex(0);
@@ -655,14 +585,11 @@ public class frmInWord extends JInternalFrame implements ActionListener
                     txBirthDate.setText("");
                     txReceivedBy.setText("");
                     txRemark.setText("");
-                }
-                else 
-                {
+                } else {
                     GlobalClass
                             .record_Reader("Select * from inword where SrNo=" + cmbSrNo.getSelectedItem().toString());
 
-                    while (GlobalClass.rs.next()) 
-                    {
+                    while (GlobalClass.rs.next()) {
                         txApplicationDate.setText(GlobalClass.rs.getString(2));
                         txApplicantName.setText(GlobalClass.rs.getString(3));
                         cmbCertificateType.setSelectedItem(GlobalClass.rs.getString(4));
@@ -676,8 +603,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
                 }
             }
 
-            if (e.getSource() == btnHideList) 
-            {
+            if (e.getSource() == btnHideList) {
                 tablePanel.setVisible(false);
                 btnListSelected.setVisible(false);
                 btnHideList.setVisible(false);
@@ -685,24 +611,18 @@ public class frmInWord extends JInternalFrame implements ActionListener
                 adjustScrollSize(); // Recalculate scroll space
                 // containerPanel.setPreferredSize(new Dimension(600,650));
             }
-        } 
-        catch (Exception ex) 
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
-    public void refreshTableData() 
-    {
-        try 
-        {
+    public void refreshTableData() {
+        try {
             GlobalClass.show_List("Select * from inword where not (Status='Completed')");
 
             int row = 0;
-            while (GlobalClass.rs.next()) 
-            {
-                for (int col = 0; col < 10; col++) 
-                {
+            while (GlobalClass.rs.next()) {
+                for (int col = 0; col < 10; col++) {
                     tblList.setValueAt(GlobalClass.rs.getString(col + 1).trim(), row, col);
                 }
                 row++;
@@ -711,9 +631,7 @@ public class frmInWord extends JInternalFrame implements ActionListener
             // Optional: revalidate/repaint UI for safety
             tblList.revalidate();
             tblList.repaint();
-        } 
-        catch (Exception ex) 
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error loading table: " + ex.getMessage());
 
         }
